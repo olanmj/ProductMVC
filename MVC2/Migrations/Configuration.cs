@@ -1,5 +1,6 @@
 namespace MVC2.Migrations
 {
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -27,6 +28,15 @@ namespace MVC2.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Products.AddOrUpdate(
+                new Product
+                {
+                    Name = "Widget",
+                    Description = "A medium widget",
+                    Price = 10,
+                    Category = "Hardware"
+                }
+              );
         }
     }
 }
