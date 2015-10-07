@@ -78,7 +78,7 @@ namespace MVC2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,Name,Description,Price,Category")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,Name,Description,Price")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -107,9 +107,9 @@ namespace MVC2.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int itemNum)
         {
-            Product product = db.Products.Find(id);
+            Product product = db.Products.Find(itemNum);
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");

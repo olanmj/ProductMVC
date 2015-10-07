@@ -4,6 +4,7 @@ namespace MVC2.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MVC2.Models.ProductContext>
     {
@@ -26,7 +27,13 @@ namespace MVC2.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            //
+
+            context.Products.AddOrUpdate(
+                p => p.Name,
+                new Product { Name = "Widget", Description = "Medium widget", Price = 50, Category = "Hardware" },
+                new Product { Name = "Hammer", Description = "For pounding nails", Price = 15, Category = "Hardware" },
+                new Product { Name = "Lawn Mower", Description = "For cutting grass", Price = 250, Category = "Power Tools" }
+                );
         }
     }
 }
