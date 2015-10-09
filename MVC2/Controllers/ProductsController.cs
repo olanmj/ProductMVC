@@ -17,6 +17,13 @@ namespace MVC2.Controllers
         // GET: Products
         public ActionResult Index()
         {
+            DateTime date = DateTime.Now;
+            ViewBag.Greeting = date.Hour < 12 ? "Good morning! " : "Good afternoon! ";
+            ViewBag.Greeting += "The time is " + date.ToShortTimeString();
+            ViewBag.Greeting += ", and the date is " + date.ToLongDateString();
+            ViewBag.Greeting += ", which is day " + date.DayOfYear;
+
+
             return View(db.Products.ToList());
         }
 
@@ -78,9 +85,9 @@ namespace MVC2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,Name,Description,Price,Category")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,Name,Description,Price, Category")] Product product)
         {
-            if (ModelState.IsValid)
+if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
@@ -107,9 +114,9 @@ namespace MVC2.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int itemNum)
         {
-            Product product = db.Products.Find(id);
+            Product product = db.Products.Find(itemNum);
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");

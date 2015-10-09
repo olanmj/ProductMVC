@@ -4,8 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<header class="jumbotron">
+    <h1 class="font">Product List</h1>
+</header>
 
+<h2>@ViewBag.Greeting</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -49,3 +52,4 @@
 }
 
 </table>
+
